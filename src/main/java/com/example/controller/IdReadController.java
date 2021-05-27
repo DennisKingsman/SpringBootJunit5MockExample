@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.model.DbData;
 import com.example.repository.DbDataRepository;
+import com.example.service.DbDataService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,17 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IdReadController {
 
-    private DbDataRepository dbDataRepository;
+    private DbDataService dbDataService;
 
     @Autowired
-    public void setDbDataRepository(DbDataRepository dbDataRepository) {
-        this.dbDataRepository = dbDataRepository;
+    public void setDbDataService(DbDataService dbDataService) {
+        this.dbDataService = dbDataService;
     }
 
     @GetMapping(value = "/data/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public DbData getStringById(@PathVariable Long id) {
-        return dbDataRepository.findById(id).get();
+        return dbDataService.findById(id);
     }
 
 }
