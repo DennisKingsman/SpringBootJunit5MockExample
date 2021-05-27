@@ -25,7 +25,7 @@ public class IdReadControllerTest {
     private final long testId = 1;
     private final DbData dbData = new DbData(testId, "data 1");
 
-//    @Mock
+    //    @Mock
     @MockBean
     private DbDataService dbDataService;
 

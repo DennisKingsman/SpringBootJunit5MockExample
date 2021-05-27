@@ -26,7 +26,7 @@ public class DbDataServiceTest {
     private DbDataService dbDataService = new DbDataServiceImpl();
 
     @BeforeEach
-    public void setMockOutput(){
+    public void setMockOutput() {
         when(dbDataRepository.findById(testId)).thenReturn(Optional.of(dbData));
     }
 
