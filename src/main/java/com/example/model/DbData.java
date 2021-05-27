@@ -17,4 +17,12 @@ public class DbData {
     @Column(name = "dataset")
     private String data;
 
+    public DbData() {
+    }
+
+    public DbData(long testId, String dataset) {
+        dataId = testId;
+        data = dataset;
+    }
+
 }
