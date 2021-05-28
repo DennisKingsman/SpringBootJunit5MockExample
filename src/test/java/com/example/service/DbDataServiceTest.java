@@ -16,23 +16,30 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class DbDataServiceTest {
 
-    private final long testId = 1;
-    private final DbData dbData = new DbData(testId, "data 1");
+    private static final long testId = 1;
+    private static final DbData dbData = new DbData(testId, "data 1");
+    private static final DbData empty = new DbData();
 
     @Mock
     private DbDataRepository dbDataRepository;
 
     @InjectMocks
-    private DbDataService dbDataService = new DbDataServiceImpl();
+    private final DbDataService dbDataService = new DbDataServiceImpl();
 
     @BeforeEach
     public void setMockOutput() {
         when(dbDataRepository.findById(testId)).thenReturn(Optional.of(dbData));
+        when(dbDataRepository.findById(5L)).thenReturn(Optional.of(empty));
     }
 
     @Test
     public void testFindById() {
         assertEquals(dbData, dbDataService.findById(testId));
+    }
+
+    @Test
+    public void testFindByIdEmpty() {
+        assertEquals(empty, dbDataService.findById(5L));
     }
 
 }
